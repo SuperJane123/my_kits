@@ -33,5 +33,26 @@ kits.primaryKey = function() {
     let r = kits.radomInt(100000,999999);
     return now + '' + r;
 
+};
+
+
+//封装一个可以获取本地数据的方法
+kits.loadData = function(key){
+    let json = localStorage.getItem(key);
+    let arr = [];
+    if(json){
+        arr = JSON.parse(json);
+        if(!(arr instanceof Array)){
+            console.warn('读取出来的数组不是一个数组');
+        }
+    }
+    return arr;
+}
+
+
+// 封装一个储存本地数据的方法
+kits.saveData = function(key,arr){
+    let json = JSON.stringify(arr);
+    localStorage.setItem(key,json);
 }
 
